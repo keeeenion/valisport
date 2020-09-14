@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head lang="en">
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<title>Locations - Directory Listing HTML Template</title>
+	<!-- Framework CSS -->
+	<link rel="stylesheet" href="assets/blueprint-css/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="assets/blueprint-css/print.css" type="text/css" media="print">
+	<!--[if lt IE 8]><link rel="stylesheet" href="assets/blueprint-css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+	<style type="text/css" media="screen">
+		p, table, hr, .box { margin-bottom:25px; }
+		.box p { margin-bottom:10px; }
+        h2 { font-size: 2.4em; }
+        .code { background-color: #F8F8F8; padding: 3px; border: 1px solid #D4D4D4; border-radius: 3px; }
+        .note { background-color: yellow; padding: 3px; }
+	</style>
+</head>
+
+
+<body>
+	<div class="container">
+
+		<h1 class="center">&ldquo;Locations HTML Template&rdquo;</h1>
+        <br>
+
+        <hr>
+
+        <h2 id="toc" class="alt">Table of Contents</h2>
+        <ol class="content">
+            <li><a href="#using-the-template">Using the Template</a></li>
+            <li><a href="#navigation-variants">Navigation Variants</a></li>
+            <li><a href="#map-settings">Map Settings</a></li>
+            <li><a href="#google-maps-api-key">Google Maps API Key</a></li>
+            <li><a href="#custom-marker-color">Custom Marker Color</a></li>
+            <li><a href="#php-files">PHP Files</a></li>
+            <li><a href="#mysql-database-connection">MySQL Database Connection</a></li>
+            <li><a href="#simulated-database-connection">Own Database Connection</a></li>
+            <li><a href="#live-map-search">Live Map Search</a></li>
+            <li><a href="#automatic-geo-location">Automatic Geo Location</a></li>
+            <li><a href="#customize-the-template">Customize the Template</a></li>
+            <li><a href="#fixed-navigation">Fixed Navigation</a></li>
+            <li><a href="#block-class">Block Class</a></li>
+            <li><a href="#background-styling">Background Styling</a></li>
+            <li><a href="#owl-carousel">Owl Carousel</a></li>
+            <li><a href="#email-forms">Email Forms</a></li>
+            <li><a href="#rtl-support">RTL Support</a></li>
+            <li><a href="#inputs-styling">Inputs Styling</a></li>
+            <li><a href="#social-share-buttons">Social Share Buttons</a></li>
+            <li><a href="#modals">Modals</a></li>
+            <li><a href="#read-more-settings">Read More Settings</a></li>
+            <li><a href="#universal-classes">Universal Classes</a></li>
+        </ol>
+        <hr>
+
+        <h2 id="using-the-template"><strong>Using the Template</strong></h2>
+        <p>In order to use the template correctly, you need to run it on <strong style="background-color: red; color: #fff; padding: 3px;">localhost server</strong>.</p>
+        <p>You can use for example <a href="https://www.apachefriends.org/index.html">XAMPP</a></p>
+
+        <hr>
+
+        <h2 id="navigation-variants"><strong>Navigation variants</strong></h2>
+        <p>You can have two styles of navigation:</p>
+        <ul>
+            <li><strong>Regular navigation</strong> with listed links - default</li>
+            <li><strong>Navigation button only</strong> - add <code class="code"><strong>nav-btn-only</strong></code> class into <code class="code"><strong>&lt;body&gt;</strong></code> element</li>
+        </ul>
+        <hr>
+
+        <h2 id="map-settings"><strong>Map Settings</strong></h2>
+        <h3><strong>Necessary variables</strong></h3>
+        <p>To get map to work properly, you need to set these variables showed lower. This script is at the bottom of the homepage HTML file.</p>
+
+<pre>
+var _latitude = 48.47292127; <em style="color: #7c7c7c">// Latitude of the map center</em>
+var _longitude = 4.28672791; <em style="color: #7c7c7c">// Longitude of the map center</em>
+var element = "map-item"; <em style="color: #7c7c7c">// ID of the map element. In this case &lt;div class="map" id="<strong>map-item</strong>"&gt;&lt;/div&gt;</em>
+var markerTarget = "sidebar"; <em style="color: #7c7c7c">// use "sidebar", "infobox" or "modal" - defines the action after click on marker</em>
+var sidebarResultTarget = "sidebar"; <em style="color: #7c7c7c">// use "sidebar", "modal" or "new_page" - defines the action after click on marker</em>
+</pre>
+        <hr>
+
+        <h2 id="google-maps-api-key"><strong>Google Maps API Key</strong></h2>
+        <p>If you don't have an API ked, the map will not be displayed, or there will be only grey background with "Oops! Something went wrong" message.</p>
+        <p>Get your API Key here:</p>
+
+        <p><a href="https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key">https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key</a></p>
+
+        <p>At the bottom of the page with map find:</p>
+<pre>
+&lt;script type="text/javascript" src="http://maps.google.com/maps/api/js?key=<strong>YOUR_API_KEY</strong>&libraries=places"&gt;&lt;/script&gt;
+</pre>
+        <p>Replace the <strong>YOUR_API_KEY</strong> with the one you have generated.</p>
+
+        <p><strong class="note">Note:</strong> If you want to use <strong>Google Autocomplete</strong> feature in your inputs, you need to place above map script on very page with
+        autocomplete input.</p>
+
+        <hr>
+
+        <h2 id="custom-marker-color"><strong>Custom Marker Color</strong></h2>
+        <p>To set custom color for marker add <code><strong>'marker_color' => "#c92e2e"</strong></code> variable in <code><strong>data.php</strong></code> if you are using PHP array as databse,
+        or change <code><strong>marker_color</strong></code> column in <code><strong>items</strong></code> table in MySQL databse</p>
+        <hr>
+
+        <h2 id="php-files"><strong>PHP Files</strong></h2>
+        <p>This template uses some data stored in PHP to simulate the database connection, so the developer has less work with scripting. These files are in <code class="code"><strong>assets/external</strong></code></p>
+        <ul>
+            <li><strong>data.php</strong> - all data (simulating database)</li>
+            <li><strong>infobox.php</strong> - HTML code for map Infobox</li>
+            <li><strong>modal_*.php</strong> - HTML code for modals</li>
+            <li><strong>sidebar_detail.php</strong> - HTML code for sidebar detail of listing</li>
+            <li><strong>sidebar_results.php</strong> - HTML code for one thumbnail in sidebar</li>
+        </ul>
+        <hr>
+
+        <h2 id="mysql-database-connection"><strong>MySQL Database Connection</strong></h2>
+        <p>Locations template has prepared MySQL and PHP files to help you with database connection. First of all you need to <strong>rename</strong> the
+        <code class="code"><strong>assets/external_mysql</strong></code> folder into <code class="code"><strong>assets/external</strong></code>.</p>
+        <p>Then open <code class="code">data.php</code> in your new renamed <code class="code">external</code> folder and edit
+            <strong>$serverName, $username, $password, $databaseName</strong> to yours or edit as you need.</p>
+        <p>As a final step, import database files located in <code class="code">assets/database/<strong>locations_example.sql</strong></code></p>
+        <hr>
+
+        <h2 id="optimized-database-loading"><strong>Optimized Database Loading</strong></h2>
+        <p>If this is enabled, script will load only these markers which are visible in the map bounds. In the default (disabled) state, map will hide the markers
+        which are outside the map bounds, but they are still there. If you enable this feature, markers will be loaded and removed from the map dynamically. This
+        is good if you have many markers on the map. In included database example you can find 300 markers.</p>
+        <p><strong>To enable this feature:</strong> at the bottom of the index page with map find <code class="code">var optimizedDatabaseLoading = 0</code>. Change it to <strong>1</strong></p>
+        <hr>
+
+        <h2 id="simulated-database-connection"><strong>Simulated Database Connection</strong></h2>
+        <p><strong>data.php</strong> is used for storing all the data. It simulates the database connection and store the data in $data array.
+            If you check for example <strong>modal_item.php</strong>, you can see that on a beginning of the file is section where is "connection" to database.
+            You can add your script for database connection, but the data for current modal window must be stored in the <code class="code"><strong>$currentLocation</strong></code> variable.
+            Or you can change it, but you also need to change it everywhere in the file.
+        </p>
+        <p>
+            If you want to create a database, open "data.php" and name your variables in DB as they are named in this "data.php". Then open
+        </p>
+        <ul>
+            <li><code><strong>modal_item.php</strong></code></li>
+            <li><code><strong>sidebar_detail.php</strong></code></li>
+        </ul>
+        <p>
+            and check the section with <strong>Here comes your script for loading from the database</strong>. Create connection to DB here.
+            Ajax is sending ID of an item to the PHP, so you can point directly to DB what ID you need by <code><strong class="code">$_POST['id']</strong></code>.
+            Returned data needs to be stored in <code class="code"><strong>$currentLocation</strong></code> variable.
+        </p>
+        <p>
+            In <code><strong>sidebar_results.php</strong></code> you need to load all the data from the Database and store them in <code class="code"><strong>$data</strong></code> array.
+        </p>
+        <p><strong class="note">Important:</strong> as the template uses JSON format, you need echo the data as JSON using <code class="code">echo json_encode( $data )</code></p>
+        <hr>
+
+        <h2 id="live-map-search"><strong>Live Map Search</strong></h2>
+        <p>"Live map search" - when user clicks the "Search" button on the map search form and new data (markers, sidebar results etc) on the map will display,
+        without map or page reloading. To enable this feature add the <strong>data-attribute</strong> to the submit button: </p>
+        <p><code class="code">&lt;button type="submit" <strong>data-ajax-response="map" data-ajax-data-file="assets/external/data_2.php"</strong></code></p>
+        <p><code class="code">data-ajax-data-file</code> is the path to file which will process the variables from submited form and return the right data.</p>
+        <em style="color: #7c7c7c">Prior to v1.2</em>
+        <p style="text-decoration: line-through">Then open <strong>assets/js/maps.js</strong> and find this comment <code class="code"><strong>Data file or database connection</strong></code>.
+        The <code class="code"><strong>url:</strong></code> variable tells what is the path to the PHP file where you store your data, or a PHP file
+        with the connection to database.</p>
+        <h3><strong>Map Auto Zoom</strong></h3>
+        <p>To enable auto zoom and center to displayed markers after search form submit, add this into submit button</p>
+        <p><code class="code">&lt;button type="submit" <strong>data-ajax-auto-zoom="1"</strong></code></p>
+
+        <hr>
+
+        <h2 id="automatic-geo-location"><strong>Automatic Geo Location</strong></h2>
+        <p>To enable Automatic Geo Location, open <span class="code">assets/js/<strong>maps.js</strong></span> and make sure that variable <code class="code">var automaticGeoLocation</code>
+        is set to:</p>
+        <p><code class="code"><strong>var automaticGeoLocation = true;</strong></code></p>
+        <hr>
+
+        <h2 id="customize-the-template"><strong>Customize the Template</strong></h2>
+        <h3><strong>Change Colors</strong></h3>
+        <p>To change the colors open <strong>custom.js</strong> file in <code>assets/js</code> folder and change the original code to <code class="code">var customizerEnabled = <strong>1</strong>;</code></p>
+        <p>Then refresh the page and the <strong>color picker</strong> will show. Change the th color and click <strong>Save Color</strong>. Sometimes you need to refresh the page and save the color again.</p>
+        <hr>
+
+        <h2 id="block-class"><strong>Block class</strong></h2>
+        <p><code><strong>Block</strong></code> class adds top and bottom padding into content section, so the different
+            content has nice white space between. Also you need to use this class if you want to set color or image background of the section (see bellow).</p>
+
+        <hr>
+
+        <h2 id="fixed-navigation"><strong>Fixed Navigation</strong></h2>
+        <p>To enable fixed navigation add <code class="code">navigation-fixed</code> class into <code class="code">&lt;body&gt;</code>.</p>
+
+        <hr>
+
+        <h2 id="background-styling"><strong>Background styling</strong></h2>
+        <p>The section can have color or image background using <code class="code"><strong>background-wrapper</strong></code> class.
+            This class needs to be wrapped in <code class="code"><strong>block</strong></code> class.</p>
+        <h4><strong>Dark background example</strong></h4>
+<pre>
+&lt;div class="block background-is-dark"&gt; <em style="color: #7c7c7c">// <strong>background-is-dark</strong> tells that background is dark and it set all texts, buttons etc to white</em>
+    &lt;div class="background-wrapper"&gt; <em style="color: #7c7c7c">// basic wrapper</em>
+        &lt;div class="background-color <strong>background-color-black</strong>"&gt;&lt;/div&gt; <em style="color: #7c7c7c">// <strong>background-color-black</strong> will fill the background with black color</em>
+    &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+        <br>
+        <h4><strong>Light grey background example</strong></h4>
+<pre>
+&lt;div class="block"&gt;
+    &lt;div class="background-wrapper"&gt; <em style="color: #7c7c7c">// basic wrapper</em>
+        &lt;div class="background-color background-color-black <strong>opacity-5</strong>"&gt;&lt;/div&gt; <em style="color: #7c7c7c">// background will be filled with black color, but <strong>opacity-5</strong> will make it a light grey</em>
+    &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+        <br>
+        <h4><strong>Background with image example</strong></h4>
+<pre>
+&lt;div class="block"&gt;
+    &lt;div class="background-wrapper"&gt; <em style="color: #7c7c7c">// basic wrapper</em>
+    &lt;div class="<strong>bg-transfer</strong> opacity-15"&gt; <em style="color: #7c7c7c">// <strong>bg-transfer</strong> class will transfer image into CSS background for better resizing control</em>
+        &lt;img src="assets/img/gallery-big-01.jpg" alt=""&gt; <em style="color: #7c7c7c">// path to the image</em>
+    &lt;/div&gt;
+        &lt;div class="background-color background-color-black opacity-5"&gt;&lt;/div&gt; <em style="color: #7c7c7c">// background will be filled with black color, but <strong>opacity-5</strong> will make it a light grey</em>
+    &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+        <br>
+        <h4><strong>Custom color background</strong></h4>
+<pre>
+&lt;div class="block background-is-dark"&gt; <em style="color: #7c7c7c">// <strong>background-is-dark</strong> tells that background is dark and it set all texts, buttons etc to white</em>
+    &lt;div class="background-wrapper"&gt; <em style="color: #7c7c7c">// basic wrapper</em>
+        &lt;div class="background-color" <strong>data-background-color-custom="#093228"</strong>&gt;&lt;/div&gt; <em style="color: #7c7c7c">// set HEX value of your custom color</em>
+    &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+        <hr>
+
+        <h2 id="owl-carousel"><strong>Owl carousel</strong></h2>
+        <p>Locations allows you to create a carousel without editing a JavaScript. All you need to is to set <strong  class="code">data-</strong> parameters. These data-attributes you can set:</p>
+        <ul>
+            <li><strong>data-owl-items</strong> - number of displayed items. Default 1</li>
+            <li><strong>data-owl-nav</strong> - display navigation arrows. Default 0</li>
+            <li><strong>data-owl-dots</strong> - display navigation dots. Default 0</li>
+            <li><strong>data-owl-center</strong> - center the slide. Default 0</li>
+            <li><strong>data-owl-loop</strong> - loop the carousel. Default 0</li>
+            <li><strong>data-owl-margin</strong> - margin between slides. Default 0</li>
+            <li><strong>data-owl-auto-width</strong> - dynamic width based on slide width. Default 0</li>
+            <li><strong>data-owl-nav-container</strong> - container for navigation. Default 0</li>
+            <li><strong>data-owl-autoplay</strong> - auto play slides. Default 0</li>
+            <li><strong>data-owl-fadeout</strong> - fade animation between slides. Default 0</li>
+        </ul>
+
+        <hr>
+
+        <h2 id="email-forms"><strong>Email forms</strong></h2>
+        <p>To set the for receiving messages, open <strong>assets/php/email.php</strong> and change <strong>email@example.com</strong> to your own.
+            Every <strong>&lt;form&gt;</strong> which will send emails must have <code class="code"><strong>form-email</strong></code> class.
+            Forms can have these predefined <strong>name</strong> attributes:</p>
+        <ul>
+            <li>name</li>
+            <li>email</li>
+            <li>phone</li>
+            <li>message</li>
+            <li>subject</li>
+        </ul>
+        <hr>
+
+        <h2 id="rtl-support"><strong>RTL Support</strong></h2>
+        <p>To enable RTL support add this code in <code class="code"><strong>&lt;head&gt;</strong></code> after <strong>style.css</strong>:</p>
+        <p><code class="code">&lt;<strong>link rel="stylesheet" href="assets/css/rtl.css" type="text/css"</strong>&gt;</code></p>
+        <p>Then add <code class="code">rtl</code> class into <code class="code"><strong>&lt;body&gt;</strong></code> element.</p>
+        <hr>
+
+        <h2 id="inputs-styling"><strong>Inputs styling</strong></h2>
+        <p>You can choose between <strong>regular</strong> inputs style and <strong>underline</strong>. To add underline style, add <code class="code"><strong>inputs-underline</strong></code> class
+            into <strong>&lt;form&gt;</strong> element.</p>
+        <hr>
+
+        <h2 id="social-share-buttons"><strong>Social Share Buttons</strong></h2>
+        <p>To change the social buttons open <code><strong>assets/js/custom.js</strong></code> and find <code><strong>function socialShare()</strong></code>. Then change
+            the <strong>shares:</strong> variable according <a href="http://js-socials.com/docs/#configuration">http://js-socials.com/docs/#configuration</a>
+        </p>
+        <p>
+            To disable social buttons change <code>var socialButtonsEnabled</code> to 0 so it looks: <code><strong>var socialButtonsEnabled = 0;</strong></code>
+        </p>
+
+        <hr>
+
+        <h2 id="modals"><strong>Modals</strong></h2>
+        <p>Modals are dynamically loaded using AJAX and stored in PHP files. You can find them in <strong><code>assets/external</code></strong>. Right now there are these modal files:</p>
+        <ul>
+            <li><strong>modal_item.php</strong> - detailed information about listing/item</li>
+            <li><strong>modal_register.php</strong> - registration form</li>
+            <li><strong>modal_sign_in.php</strong> - submit form</li>
+            <li><strong>modal_reset_password.php</strong> - reset password form</li>
+            <li><strong>modal_submit.php</strong> - submit form</li>
+        </ul>
+        <h3>Displaying modals</h3>
+        <p>To access the modal window you need to add these two <strong>data-</strong> attributes to link which will open the modal:</p>
+        <ul>
+            <li><code><strong>data-modal-external-file="path_to_modal.php"</strong></code> - path to PHP file with HTML code</li>
+            <li><code><strong>data-target="modal-sign-in"</strong></code> - the unique ID of modal. All modals must have the ID in the HTML code</li>
+        </ul>
+        <h3>Map in Modal Submit Page</h3>
+        <p>To change the marker position in Modal window with submit page, open <strong>assets/external/modal_submit.php</strong>
+        and change <code class="code">data-latitude="40.7344458"</code> and <code class="code">data-longitude="-73.86704922"</code></p>
+        <hr>
+
+        <h2 id="read-more-settings"><strong>Read more settings</strong></h2>
+        <p><strong>Read more</strong> is JS plugin which allows you to show only small part of text or any element and hide the remaining one.
+        You can set these data- attributes</p>
+        <ul>
+            <li><strong>data-read-more-collapse-height</strong> - height in pixels</li>
+            <li><strong>data-read-more-more-link</strong> - text for "read more" button</li>
+            <li><strong>data-read-more-less-link</strong> - text for "read less" button</li>
+        </ul>
+        <hr>
+
+
+        <h2 id="universal-classes"><strong>Universal classes</strong></h2>
+        <ul>
+            <li>.opacity-90 { opacity(.9); }</li>
+            <li>.opacity-80 { opacity(.8); }</li>
+            <li>.opacity-70 { opacity(.7); }</li>
+            <li>.opacity-60 { opacity(.6); }</li>
+            <li>.opacity-50 { opacity(.5); }</li>
+            <li>.opacity-40 { opacity(.4); }</li>
+            <li>.opacity-30 { opacity(.3); }</li>
+            <li>.opacity-20 { opacity(.2); }</li>
+            <li>.opacity-19 { opacity(.19); }</li>
+            <li>.opacity-18 { opacity(.18); }</li>
+            <li>.opacity-17 { opacity(.17); }</li>
+            <li>.opacity-16 { opacity(.16); }</li>
+            <li>.opacity-15 { opacity(.15); }</li>
+            <li>.opacity-14 { opacity(.14); }</li>
+            <li>.opacity-13 { opacity(.13); }</li>
+            <li>.opacity-12 { opacity(.12); }</li>
+            <li>.opacity-11 { opacity(.11); }</li>
+            <li>.opacity-10 { opacity(.1); }</li>
+            <li>.opacity-9 { opacity(.09); }</li>
+            <li>.opacity-8 { opacity(.08); }</li>
+            <li>.opacity-7 { opacity(.07); }</li>
+            <li>.opacity-6 { opacity(.06); }</li>
+            <li>.opacity-5 { opacity(.05); }</li>
+            <li>.opacity-4 { opacity(.04); }</li>
+            <li>.opacity-3 { opacity(.03); }</li>
+            <li>.opacity-2 { opacity(.02); }</li>
+            <li>.opacity-1 { opacity(.01); }</li>
+            <li>.opacity-0 { opacity(.00); }</li>
+            <li>.width-10 { width: 10% !important; }</li>
+            <li>.width-15 { width: 15% !important; }</li>
+            <li>.width-20 { width: 20% !important; }</li>
+            <li>.width-25 { width: 25% !important; }</li>
+            <li>.width-30 { width: 30% !important; }</li>
+            <li>.width-33 { width: 33% !important; }</li>
+            <li>.width-35 { width: 35% !important; }</li>
+            <li>.width-40 { width: 40% !important; }</li>
+            <li>.width-45 { width: 45% !important; }</li>
+            <li>.width-50 { width: 50% !important; }</li>
+            <li>.width-55 { width: 55% !important; }</li>
+            <li>.width-60 { width: 60% !important; }</li>
+            <li>.width-65 { width: 65% !important; }</li>
+            <li>.width-70 { width: 70% !important; }</li>
+            <li>.width-75 { width: 75% !important; }</li>
+            <li>.width-80 { width: 80% !important; }</li>
+            <li>.width-85 { width: 85% !important; }</li>
+            <li>.width-90 { width: 90% !important; }</li>
+            <li>.width-95 { width: 95% !important; }</li>
+            <li>.width-100 { width: 100% !important; }</li>
+            <li>.width-100px { width: 100px; }</li>
+            <li>.width-150px { width: 150px; }</li>
+            <li>.width-200px { width: 200px; }</li>
+            <li>.width-250px { width: 250px; }</li>
+            <li>.width-300px { width: 300px; }</li>
+            <li>.width-350px { width: 350px; }</li>
+            <li>.width-400px { width: 400px; }</li>
+            <li>.width-450px { width: 450px; }</li>
+            <li>.width-500px { width: 500px; }</li>
+            <li>.width-550px { width: 550px; }</li>
+            <li>.width-600px { width: 600px; }</li>
+            <li>.width-650px { width: 650px; }</li>
+            <li>.width-700px { width: 700px; }</li>
+            <li>.width-750px { width: 750px; }</li>
+            <li>.width-800px { width: 800px; }</li>
+            <li>.width-850px { width: 850px; }</li>
+            <li>.width-900px { width: 900px; }</li>
+            <li>.width-950px { width: 950px; }</li>
+            <li>.width-1000px { width: 1000px; }</li>
+            <li>.min-width-50px { min-width: 50px; }</li>
+            <li>.min-width-100px { min-width: 100px; }</li>
+            <li>.min-width-150px { min-width: 150px; }</li>
+            <li>.min-width-200px { min-width: 200px; }</li>
+            <li>.min-width-250px { min-width: 250px; }</li>
+            <li>.min-width-300px { min-width: 300px; }</li>
+            <li>.min-width-350px { min-width: 350px; }</li>
+            <li>.height-10percent { height: 10%; }</li>
+            <li>.height-20percent { height: 20%; }</li>
+            <li>.height-30percent { height: 30%; }</li>
+            <li>.height-40percent { height: 40%; }</li>
+            <li>.height-50percent { height: 50%; }</li>
+            <li>.height-60percent { height: 60%; }</li>
+            <li>.height-70percent { height: 70%; }</li>
+            <li>.height-80percent { height: 80%; }</li>
+            <li>.height-90percent { height: 90%; }</li>
+            <li>.height-100percent { height: 100%; }</li>
+            <li>.height-100px { height: 100px; }</li>
+            <li>.height-150px { height: 150px; }</li>
+            <li>.height-200px { height: 200px; }</li>
+            <li>.height-250px { height: 250px; }</li>
+            <li>.height-300px { height: 300px; }</li>
+            <li>.height-350px { height: 350px; }</li>
+            <li>.height-400px { height: 400px; }</li>
+            <li>.height-450px { height: 450px; }</li>
+            <li>.height-500px { height: 500px; }</li>
+            <li>.height-550px { height: 550px; }</li>
+            <li>.height-600px { height: 600px; }</li>
+            <li>.height-650px { height: 650px; }</li>
+            <li>.height-700px { height: 700px; }</li>
+            <li>.height-750px { height: 750px; }</li>
+            <li>.height-800px { height: 800px; }</li>
+            <li>.height-850px { height: 850px; }</li>
+            <li>.height-900px { height: 900px; }</li>
+            <li>.height-950px { height: 950px; }</li>
+            <li>.height-1000px { height: 1000px; }</li>
+            <li>.space { height: 50px; }</li>
+            <li>.shadow</li>
+            <li>.shadow-big</li>
+        </ul>
+
+
+        <br><br>
+
+
+        <p><strong>Icons used</strong></p>
+        <ul>
+            <li><a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</a></li>
+        </ul>
+
+		<p>Once again, thank you so much for purchasing this theme. As I said at the beginning, I'd be glad to help you if you have any questions relating to this theme. No guarantees, but I'll do my best to assist. If you have a more general question relating to the themes on ThemeForest, you might consider visiting the forums and asking your question in the "Item Discussion" section.</p> 
+		
+		<p class="append-bottom alt large"><strong>Theme Starz</strong></p>
+		<p><a href="#toc">Go To Table of Contents</a></p>
+		
+		<hr class="space">
+	</div><!-- end div .container -->
+</body>
+</html>
